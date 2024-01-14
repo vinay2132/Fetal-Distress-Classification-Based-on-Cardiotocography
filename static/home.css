@@ -1,1 +1,555 @@
+@import url(https://fonts.googleapis.com/css?family=Cookie|Raleway:300,700,400);
+*{
+	box-sizing: border-box;
+	font-size: 1em;
+	margin: 0;
+	padding: 0;
+}
+body{
+	background: url('https://ak.picdn.net/shutterstock/videos/1098595/thumb/1.jpg') center repeat;
+	background-size: cover;
+	color: #333;
+	font-size: 18px;
+	font-family: 'Raleway', sans-serif;
+}
 
+#parent  
+{  
+    text-align: center;    
+    width:100%;  
+}
+
+.container{
+	border-radius: 0.5em;
+	box-shadow: 0 0 1em 0 rgba(51,51,51,0.25);
+	display: block;
+	max-width: 700px;
+	overflow: hidden;
+    background-color:#fff;
+    opacity: 0.75;
+	padding: 2em;
+	width: 98%;
+}
+.heading{
+    background-color: rgb(
+        133, 130, 126
+        );
+    height: 900px;
+}
+.heading1{
+    background-color:rgb(153, 106, 106);
+    height: 350px;
+}
+
+form input.submit{
+	background: rgba(255,255,255,0.25);
+	border: 1px solid #333;
+	line-height: 1em;
+	padding: 0.5em 0.5em;
+	-webkit-transition: all 0.25s;
+	transition: all 0.25s;
+}
+form input.submit:hover,
+form input.submit:focus,
+form input.submit:active,
+form input.submit.loading{
+	background: #333;
+	color: #fff;
+	outline: none;
+}
+form button.success{
+	background: #27ae60;
+	border-color: #27ae60; 
+	color: #fff;
+}
+@-webkit-keyframes spin{
+	from{ transform: rotate(0deg); }
+	to{ transform: rotate(360deg); }
+}
+@keyframes spin{
+	from{ transform: rotate(0deg); }
+	to{ transform: rotate(360deg); }
+}
+form button span.loading-spinner{
+	-webkit-animation: spin 0.5s linear infinite;
+	animation: spin 0.5s linear infinite;
+	border: 2px solid #fff;
+	border-top-color: transparent;
+	border-radius: 50%;
+	display: inline-block;
+	height: 1em;
+	width: 1em;
+}
+
+form label{
+	border-bottom: 1px solid #333;
+	display: block;
+	font-size: 1.25em;
+	margin-bottom: 0.5em;
+	-webkit-transition: all 0.25s;
+	transition: all 0.25s;
+}
+form label.col-one-half{
+	font-size: 2em;
+	float: left;
+	width: 50%;
+    font-family: 'Trebuchet MS';
+}
+form label.col-one-half:nth-of-type(even){
+	border-left: 1px solid #333;
+	padding-left: 0.25em;
+}
+form label.col-one-half1{
+	font-size: 2em;
+	float: left;
+	width: 50%;
+    font-family: 'Trebuchet MS';
+}
+form label.col-one-half1:nth-of-type(odd){
+	border-left: 1px solid #333;
+	padding-left: 0.25em;
+}
+form label input{
+	background: none;
+	border: none;
+  font-size: x-large;
+	line-height: 1em;
+	font-weight: 300;
+	padding: 0.125em 0.25em;
+	width: 100%;
+}
+form label input:focus{
+	outline: none;
+}
+form label input:-webkit-autofill{
+	background-color: transparent !important;
+}
+form label span.label-text{
+	display: block;
+	font-size: 0.5em;
+	font-weight: bold;
+	padding-left: 0.5em;
+	text-transform: uppercase;
+	-webkit-transition: all 0.25s;
+	transition: all 0.25s;
+}
+form label.checkbox{
+	border-bottom: 0;
+	text-align: center;
+}
+form label.checkbox input{
+	display: none;
+}
+form label.checkbox span{
+	font-size: 0.5em;
+}
+form label.checkbox span:before{
+	content: '\e157';
+	display: inline-block;
+	font-family: 'Glyphicons Halflings';
+	font-size: 1.125em;
+	padding-right: 0.25em;
+	position: relative;
+		top: 1px;
+}
+form label.checkbox input:checked + span:before{content: '\e067';}
+form label.invalid{border-color: #c0392b !important;}
+form label.invalid span.label-text{color: #c0392b;}
+form label.password{position: relative;}
+form label.password button.toggle-visibility{
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 0.75em;
+	line-height: 1em;
+	position: absolute;
+		top: 50%;
+		right: 0.5em;
+	text-align: center;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	-webkit-transition: all 0.25s;
+	transition: all 0.25s;
+}
+form label.password button.toggle-visibility:hover,
+form label.password button.toggle-visibility:focus,
+form label.password button.toggle-visibility:active{
+	color: #000;
+	outline: none;
+}
+form label.password button.toggle-visibility span{vertical-align: middle;}
+h1{
+	font-size: 2em;
+	margin: 0 0 0.5em 0;
+	text-align: center;
+	font-family: 'Cookie', cursive;
+}
+h1 img{
+	height: auto;
+	margin: 0 auto;
+	max-width: 240px;
+	width: 100%;
+}
+html{
+	font-size: 18px;
+	height: 100%;
+}
+
+.texte
+{
+    font-size: 3em;
+	font-family: 'Trebuchet MS', cursive;
+    color: #fff;
+    position: relative;
+        top:20%;
+        right: 25%;
+}
+
+.texte1
+{
+    font-size: 1.5em;
+	font-family: 'Trebuchet MS', cursive;
+    color: #000;
+    position: relative;
+        top:4%;
+        right:36.8%;
+    font-weight: bold;
+}
+.texte2
+{
+    font-size: large;
+	font-family: 'Trebuchet MS', cursive;
+    color: #fff;
+    position: relative;
+        top: 8%;
+        left: 4%;
+    text-align: left;
+    line-height: 1.6;
+    width: 90%;
+}
+.texte3
+{
+    font-size: 1.5em;
+	font-family: 'Trebuchet MS', cursive;
+    color: #000;
+    position: relative;
+        top:4%;
+        right:35.4%;
+    font-weight: bold;
+}
+.texte4
+{
+    font-size: 1.5em;
+	font-family: 'Trebuchet MS', cursive;
+    color: #000;
+    position: relative;
+        top:4%;
+        right:34.5%;
+    font-weight: bold;
+}
+.texte5
+{
+    font-size: 1.4em;
+	font-family: 'Trebuchet MS', cursive;
+    color: #000;
+    position: relative;
+        top:4%;
+        right:38%;
+    font-weight: bold;
+}
+.texte6
+{
+    font-size: 1.5em;
+	font-family: 'Trebuchet MS', cursive;
+    color: #000;
+    position: relative;
+        top:4%;
+        right:33.5%;
+    font-weight: bold;
+}
+.texte7
+{
+    font-size: 1.5em;
+	font-family: 'Trebuchet MS', cursive;
+    color: #000;
+    position: relative;
+        top:6%;
+        right:27%;
+    font-weight: bold;
+}
+.texte8
+{
+  font-size: 1.5em;
+	font-family: 'Trebuchet MS', cursive;
+    color: #000;
+    position: center;
+    font-weight: bold;
+}
+.texte9
+{
+    font-size: large;
+	font-family: 'Trebuchet MS', cursive;
+    color: #fff;
+    position: relative;
+        top: 8%;
+    text-align: left;
+    line-height: 1.6;
+    width: 90%;
+}
+.texte10
+{
+    font-size: large;
+	font-family: 'Trebuchet MS', cursive;
+    color: #fff;
+    position: relative;
+        top: 4%;
+        left: 7%;
+    text-align: left;
+    line-height: 1.6;
+    width: 90%;
+}
+.text-center{
+	text-align: center;
+}
+
+.text-left{
+	text-align: left;
+    font-size: 2em;
+    font-family: 'Cookie', cursive;
+}
+
+
+.header1 {
+    overflow: hidden;
+    background-color:grey;
+    padding: 20px 10px;
+  }
+  
+  .header1 a {
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px; 
+    line-height: 25px;
+    border-radius: 4px;
+  }
+  
+  .header1 a.logo {
+    font-size: 25px;
+    font-weight: bold;
+  }
+  
+  .header1 a:hover {
+    color: black;
+  }
+  
+  .header1 a.active {
+    background-color: dodgerblue;
+    color: white;
+  }
+  
+  .header1-right {
+    float: right;
+  }
+  
+  @media screen and (max-width: 500px) {
+    .header1 a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+    
+    .header1-right {
+      float: none;
+    }
+  }
+  #parent  
+  {  
+      text-align: center;    
+      width:100%;  
+  }
+
+  .carousel-item {
+    height: 65vh;
+    min-height: 350px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .site-footer
+{
+  background-color:#26272b;
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:#737373;
+}
+.site-footer hr
+{
+  border-top-color:#bbb;
+  opacity:0.5
+}
+.site-footer hr.small
+{
+  margin:20px 0
+}
+.site-footer h6
+{
+  color:#fff;
+  font-size:16px;
+  text-transform:uppercase;
+  margin-top:5px;
+  letter-spacing:2px
+}
+.site-footer a
+{
+  color:#737373;
+}
+.site-footer a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links
+{
+  padding-left:0;
+  list-style:none
+}
+.footer-links li
+{
+  display:block
+}
+.footer-links a
+{
+  color:#737373
+}
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links.inline li
+{
+  display:inline-block
+}
+.site-footer .social-icons
+{
+  text-align:right
+}
+.site-footer .social-icons a
+{
+  width:40px;
+  height:40px;
+  line-height:40px;
+  margin-left:6px;
+  margin-right:0;
+  border-radius:100%;
+  background-color:#33353d
+}
+.copyright-text
+{
+  margin:0
+}
+@media (max-width:991px)
+{
+  .site-footer [class^=col-]
+  {
+    margin-bottom:30px
+  }
+}
+@media (max-width:767px)
+{
+  .site-footer
+  {
+    padding-bottom:0
+  }
+  .site-footer .copyright-text,.site-footer .social-icons
+  {
+    text-align:center
+  }
+}
+.social-icons
+{
+  padding-left:0;
+  margin-bottom:0;
+  list-style:none
+}
+.social-icons li
+{
+  display:inline-block;
+  margin-bottom:4px
+}
+.social-icons li.title
+{
+  margin-right:15px;
+  text-transform:uppercase;
+  color:#96a2b2;
+  font-weight:700;
+  font-size:13px
+}
+.social-icons a{
+  background-color:#eceeef;
+  color:#818a91;
+  font-size:16px;
+  display:inline-block;
+  line-height:44px;
+  width:44px;
+  height:44px;
+  text-align:center;
+  margin-right:8px;
+  border-radius:100%;
+  -webkit-transition:all .2s linear;
+  -o-transition:all .2s linear;
+  transition:all .2s linear
+}
+.social-icons a:active,.social-icons a:focus,.social-icons a:hover
+{
+  color:#fff;
+  background-color:#29aafe
+}
+.social-icons.size-sm a
+{
+  line-height:34px;
+  height:34px;
+  width:34px;
+  font-size:14px
+}
+.social-icons a.facebook:hover
+{
+  background-color:#3b5998
+}
+.social-icons a.twitter:hover
+{
+  background-color:#00aced
+}
+.social-icons a.linkedin:hover
+{
+  background-color:#007bb6
+}
+@media (max-width:767px)
+{
+  .social-icons li.title
+  {
+    display:block;
+    margin-right:0;
+    font-weight:600
+  }
+}
+.container2{
+	padding-right:15px;
+    padding-left:15px;
+    margin-right:auto;
+    margin-left:auto;
+}
+ul.abc 
+{
+  list-style-type: square;
+  position: relative;
+    left: 5%;
+}
