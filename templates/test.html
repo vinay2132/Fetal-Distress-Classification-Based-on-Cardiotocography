@@ -1,0 +1,485 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Fetal Distress Classification</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+        <link rel="stylesheet" href="/static/home.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    </head>
+    <body>
+        <div id=parent>
+            
+            <div>
+                <div class="header1">
+                  <a href="#default" class="logo" style="font-family: 'Trebuchet MS'; font-size:xx-large;">Fetal Distress Classification Using Cardiotocography</a>
+                  <div class="header1-right">
+                    <a href="https://gamecontent391.000webhostapp.com/Quote/stg.pdf" target="_blank" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">More Info</a>
+                  </div>
+               </div>
+            </div><br>
+            <div class="container" style="font-size: x-large;">
+                <div>
+                    <label><h2 class='texte8'>Status of Fetal Distress</h2></label>
+                </div>
+                <br>
+                <div> 
+                    {% if prediction==1.0 %}
+                    <h2 class="texte2" style="color:rgb(0, 255, 0); font-size: x-large;">Normal.<br> Please be cool</h2>
+                    {% elif prediction==2.0 %}
+                    <h2 class="texte2" style="color:orange; font-size: x-large;">Suspecious.<br> Be careful! Chances of Distress</h2>
+                    {% elif prediction==3.0 %}
+                    <h2 class="texte2" style="color:rgb(255, 0, 0); font-size: x-large;">Pathological.<br>Need an Emergency Treatment</h2>
+                    {% else %}
+                    <h2 class="texte2" style="color:rgb(0, 192, 226); font-size: x-large;">Some thing went wrong. PLease check once</h2>
+                    {% endif %}
+                
+                </div>
+            </div><br>
+
+            <div class="container" style="font-size: x-large;">
+                <div>
+                    
+                    <label><h2 class='texte8'>Analysis of Fetal Distress</h2></label>
+                </div>
+                <br>
+                <div>
+                    {% if prediction==1.0 %}
+                    <p class="texte2" style="color:rgb(0, 255, 0); font-size: 0.8em;">
+                      The Fetal Heart rate is 110-160 bpm and variability is betweeen 5 to 25 bpm.
+                      The decelerations are non repetive and there are atleast 2 accelerations in 20 minutes of CTG
+                      The Uterine Contradictions are also normal. So we can conclude that there is no fetal distress and it is normal.
+                    </p>
+                    {% elif prediction==2.0 %}
+                    <p class="texte2" style="color:orange; font-size: 0.8em;">
+                    
+                      The fetal heart rate it is 100bpm to 110bpm or greater than 160 bpm. The variability is greater than 25 bpm or less than 5 bpm for 40 min and also having decelerations like early deceleration variable or single prolonged decelerations and absence of accelerations.   The Uterine contractions are 5 and it is somewhat suspicious.  Thus we can conclude that 50% chance of occurring fetal distress in future.
+                    </p>
+                    {% elif prediction==3.0 %}
+                    <p class="texte2" style="color:red; font-size: 0.8em;">
+                    
+                      The fetal heart rate is below 100 bpm and a pattern of variable is sinusoidal and greater than 25 bpm or less than 5 bpm for 90 minutes. The decelerations are greater than 3 minutes and they are late decelerations and prolonged deceleration and no accelerations are present. The uterine contractions are greater than 5 and it is dangerous. Thus we can conclude that that fatal is in severe condition need an emergency support.
+                    </p>
+                    {% else %}
+                    <p class="texte2" style="color:rgb(255, 0, 0); font-size: x-large;">Got Some Error</p>
+                    {% endif %}
+                
+                </div>
+            </div><br>
+            
+          <div class="container" style="font-size: x-large;">
+            <div>
+                <label><h2 class='texte8'>Graphs</h2></label>
+            </div><br>
+            <div>
+              <div style="height: 300;">
+                <canvas id='linechart5' width="600" height="300"></canvas>
+                <script>
+                    var ctx = document.getElementById("linechart5").getContext("2d");
+                    var linechart = new Chart(ctx,{
+                        type:"line",
+                        data: {
+                            labels: {{ labels5 | safe }},
+                            datasets: [
+                                {
+                                    data:{{ values5 | safe }},
+                                    fill:false,
+                                    borderColor: "rgb(75,192,192)",
+                                    lineTension:0.1,
+                                    backgroundColor:[
+                                'rgba(255, 99, 132, 0.6)',
+                                'rgba(54, 162, 235, 0.6)',
+                                'rgba(255, 206, 86, 0.6)',
+                                'rgba(75, 192, 192, 0.6)',
+                                'rgba(153, 102, 255, 0.6)',
+                                'rgba(255, 159, 64, 0.6)'
+                                ],
+            
+                                }
+                            ],
+                            
+                        },
+                        options:{
+                            responsive: false,
+                            legend: {display: false},
+                            scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true,
+                                            min: 0
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        barPercentage: 0.6,
+                                        maxBarThickness: 5  ,
+                                        minBarLength: 10,
+                                    }]
+                            },
+                            title:{
+                                display:true,
+                                text:'Basic Important Readings',
+                                fontSize:15
+                            }
+                        }
+                    });
+            
+                </script>
+                </div><br>
+              <div style="height: 300;">
+                <canvas id='linechart1' width="600" height="300"></canvas>
+                <script>
+                    var ctx = document.getElementById("linechart1").getContext("2d");
+                    var linechart = new Chart(ctx,{
+                        type:"line",
+                        data: {
+                            labels: {{ labels1 | safe }},
+                            datasets: [
+                                {
+                                    data:{{ values1 | safe }},
+                                    fill:false,
+                                    borderColor: "rgb(75,192,192)",
+                                    lineTension:0.1,
+                                    backgroundColor:[
+                                'rgba(255, 99, 132, 0.6)',
+                                'rgba(54, 162, 235, 0.6)',
+                                'rgba(255, 206, 86, 0.6)',
+                                'rgba(75, 192, 192, 0.6)',
+                                'rgba(153, 102, 255, 0.6)',
+                                'rgba(255, 159, 64, 0.6)'
+                                ],
+            
+                                }
+                            ],
+                            
+                        },
+                        options:{
+                            responsive: false,
+                            legend: {display: false},
+                            scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true,
+                                            min: 0
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        barPercentage: 0.6,
+                                        maxBarThickness: 5  ,
+                                        minBarLength: 10,
+                                    }]
+                            },
+                            title:{
+                                display:true,
+                                text:'Decelerations Readings',
+                                fontSize:15
+                            }
+                        }
+                    });
+            
+                </script>
+                </div><br>
+                <div style="height: 300;">
+                  <canvas id='linechart2' width="600" height="300"></canvas>
+                  <script>
+                      var ctx = document.getElementById("linechart2").getContext("2d");
+                      var linechart = new Chart(ctx,{
+                          type:"line",
+                          data: {
+                              labels: {{ labels2 | safe }},
+                              datasets: [
+                                  {
+                                      data:{{ values2 | safe }},
+                                      fill:false,
+                                      borderColor: "rgb(75,192,192)",
+                                      lineTension:0.1,
+                                      backgroundColor:[
+                                  'rgba(255, 99, 132, 0.6)',
+                                  'rgba(54, 162, 235, 0.6)',
+                                  'rgba(255, 206, 86, 0.6)',
+                                  'rgba(75, 192, 192, 0.6)',
+                                  'rgba(153, 102, 255, 0.6)',
+                                  'rgba(255, 159, 64, 0.6)'
+                                  ],
+              
+                                  }
+                              ],
+                              
+                          },
+                          options:{
+                              responsive: false,
+                              legend: {display: false},
+                              scales: {
+                                      yAxes: [{
+                                          ticks: {
+                                              beginAtZero: true,
+                                              min: 0
+                                          }
+                                      }],
+                                      xAxes: [{
+                                          barPercentage: 0.6,
+                                          maxBarThickness: 5  ,
+                                          minBarLength: 10,
+                                      }]
+                              },
+                              title:{
+                                  display:true,
+                                  text:'Variability Readings',
+                                  fontSize:15
+                              }
+                          }
+                      });
+              
+                  </script>
+                  </div> <br>
+                  <div>
+                    <h3 class="texte2" style="color:rgb(0, 0, 0); font-size:small;">&emsp;ASTV : Abnormal Short Term Variability &emsp; &emsp; &emsp;MSTV: Mean Value of Short Term Variability</h3>
+                    <h3 class="texte2" style="color:rgb(0, 0, 0); font-size:small;">&emsp;ALTV : Abnormal Long Term Variability &emsp; &emsp; &nbsp; &nbsp; MLTV: Mean Value of Long Term Variability</h3>
+                  </div><br>
+                  <div style="height: 300;">
+                    <canvas id='linechart3' width="600" height="300"></canvas>
+                    <script>
+                        var ctx = document.getElementById("linechart3").getContext("2d");
+                        var linechart = new Chart(ctx,{
+                            type:"bar",
+                            data: {
+                                labels: {{ labels3 | safe }},
+                                datasets: [
+                                    {
+                                        data:{{ values3 | safe }},
+                                        fill:false,
+                                        borderColor: "rgb(75,192,192)",
+                                        lineTension:0.1,
+                                        backgroundColor:[
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)',
+                                    'rgba(242, 64, 255, 1)'
+                                    ],
+                
+                                    }
+                                ],
+                                
+                            },
+                            options:{
+                                responsive: false,
+                                legend: {display: false},
+                                scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero: true,
+                                                min: 0
+                                            }
+                                        }],
+                                        xAxes: [{
+                                            barPercentage: 0.6,
+                                            maxBarThickness: 5  ,
+                                            minBarLength: 10,
+                                        }]
+                                },
+                                title:{
+                                    display:true,
+                                    text:'Histogram Readings',
+                                    fontSize:15
+                                }
+                            }
+                        });
+                
+                    </script>
+                    </div> <br>
+                    <div style="height: 400;">
+                      <canvas id='linechart4' width="600" height="400"></canvas>
+                      <script>
+                          var ctx = document.getElementById("linechart4").getContext("2d");
+                          var linechart = new Chart(ctx,{
+                              type:"polarArea",
+                              data: {
+                                  labels: {{ labels4 | safe }},
+                                  datasets: [
+                                      {
+                                          data:{{ values4 | safe }},
+                                          fill:false,
+                                          borderColor: "rgb(75,192,192)",
+                                          lineTension:0.1,
+                                          backgroundColor:[
+                                      'rgba(255, 99, 132, 1)',
+                                      'rgba(54, 162, 235, 1)',
+                                      'rgba(255, 206, 86, 1)',
+                                      'rgba(75, 192, 192, 1)',
+                                      'rgba(153, 102, 255, 1)',
+                                      'rgba(255, 159, 64, 1)',
+                                      'rgba(242, 64, 255, 1)'
+                                      ],
+                  
+                                      }
+                                  ],
+                                  
+                              },
+                              options:{
+                                  responsive: false,
+                                  legend: {display: true},
+                                  title:{
+                                      display:true,
+                                      text:'Output Comparison',
+                                      fontSize:15
+                                  }
+                              }
+                          });
+                  
+                      </script>
+                      </div>
+            </div>
+        </div><br>
+        <div class="container" style="font-size: x-large;">
+          <div>
+              <label><h2 class='texte8'>Further Steps to be taken</h2></label>
+          </div>
+          <br>
+          <div>
+              {% if prediction==1.0 %}
+              <p class="texte2" style="color:rgb(0, 255, 0); font-size: 0.8em;">
+                <ul class="texte2" style="color:rgb(0, 255, 0); font-size: 0.8em;">
+                  <ul class="abc">
+                  <li>No intervention necessary to improve fetal oxygenation state</li>
+                  <li>Continue CTG for extra few minutes</li>
+                </ul>
+                </ul>
+              </p>
+              {% elif prediction==2.0 %}
+              <p class="texte2" style="color:orange; font-size: 0.8em;">
+              <ul class="texte2" style="color:orange; font-size: 0.8em;">
+              <ul class="abc">
+                <li>Correct any underlying causes such as hypotension or uterine hyperstimulation</li>
+
+                <li>Start one or more conservative measures</li>
+
+                <li>Inform an obstetrician or a senior midwife</li>
+
+                <li>Document a plan for reviewing the whole clinical picture and the CTG findings</li>
+
+                <li>Action to correct reversible causes if identified, close monitoring or additional methods to evaluate fetal oxygenation</li>
+              </ul>
+              </ul>
+              </p>
+              {% elif prediction==3.0 %}
+              <p class="texte2" style="color:red; font-size: 0.8em;">
+              
+                <ul class="texte2" style="color:red; font-size: 0.8em;">
+                  <ul class="abc">
+                    <li>Obtain a review by an obstetrician and a senior midwife</li>
+
+                    <li>Exclude acute events (e.g. cord prolapse, suspected placental abruption, or suspected uterine rupture)</li>
+
+                    <li>Correct any underlying causes, such as hypotension or uterine hyperstimulation</li>
+
+                    <li>Start one or more conservative measures</li>
+
+                    <li>If the CTG trace is still pathological after implementing conservative measures then offer digital fetal scalp stimulation and document the outcome
+                    </li>
+                    <li>If the cardiotocograph trace is still pathological after fetal scalp stimulation consider fetal blood sampling and expediting the birth</li>
+                    <li>If the CTG trace is still pathological then make preparations for an urgent birth and expedite the birth if the acute bradycardia persists for 9 min</li>
+                  </ul>
+                  </ul>
+              </p>
+              {% else %}
+              <p class="texte2" style="color:rgb(255, 0, 0); font-size: x-large;">Got Some Error</p>
+              {% endif %}
+          
+          </div>
+      </div><br>
+      <div class="container" style="font-size: x-large;">
+        <div>
+            <label><h2 class='texte8'>Recommended Medicines</h2></label>
+        </div>
+        <br>
+        <div> 
+            {% if prediction==1.0 %}
+            <h2 class="texte2" style="color:rgb(0, 255, 0); font-size: x-large;">No Need to take extra Medicines<br> Follow basic Medicine which contains:</h2>
+            <ul class="texte2" style="color:rgb(0, 255, 0); font-size: 0.7em;">
+              <ul class="abc">
+              <li>Folic Acid</li>
+              <li>Iron</li>
+              <li>Calcium</li>
+              <li>Anti-hypertensive drug</li>
+              <li>Diuretics</li>
+            </ul>
+            </ul>
+            {% elif prediction==2.0 %}
+            <h2 class="texte2" style="color:orange; font-size: x-large;">As condition is Suspecious below medicines are recommended<br><h3 class="texte2" style="color:orange; font-size:medium;">(Note: Please Use Medicine Based on the Patient condition)</h3></h2>
+            <ul class="texte2" style="color:rgb(0, 0, 0); font-size: 0.8em;">
+              <ul class="abc">
+                <li><h3 class="texte9" style="color:rgb(0, 0, 0); font-size:large;">Tocolytics: </h3><h3 class="texte9" style="color:orange; font-size:large;">Drug that relax the uterus are thought to improve the blood circulation round the placenta and uterus.</h3></li>
+                <li><h3 class="texte9" style="color:rgb(0, 0, 0); font-size:large;">Amiodarone: </h3><h3 class="texte9" style="color:orange; font-size:large;">This drug has been described favorably which helps to treat normal fetal problems and it's not most effective so one can use easily</h3></li>
+                <li><h3 class="texte9" style="color:rgb(0, 0, 0); font-size:large;">terbutaline: </h3><h3 class="texte9" style="color:orange; font-size:large;">This drug to stop or slow the contractions which are more high and helps when the patient labour is not right to deliver</h3></li>
+                <li><h3 class="texte9" style="color:rgb(0, 0, 0); font-size:large;">Digoxin: </h3><h3 class="texte9" style="color:orange; font-size:large;">This drug is the most common drug used to treat FT. After digoxin, sotalol seems to be the most promising agent, specifically in atrial flutter and nonhydropic supraventricular tachycardia (SVT)</h3></li>
+              
+              </ul>
+              </ul>
+            {% elif prediction==3.0 %}
+            <h2 class="texte2" style="color:rgb(255, 0, 0); font-size: x-large;">As condition is Serious below medicines are recommended<br><h3 class="texte2" style="color:rgb(255, 0, 0); font-size:medium;">(Note: Please Use Medicine Based on the Patient condition)</h3></h2>
+            <ul class="texte2" style="color:rgb(0, 0, 0); font-size: 0.8em;">
+              <ul class="abc">
+                <li><h3 class="texte9" style="color:rgb(0, 0, 0); font-size:large;">Tocolytics: </h3><h3 class="texte9" style="color:rgb(255, 0, 0); font-size:large;">Drug that relax the uterus are thought to improve the blood circulation round the placenta and uterus.</h3></li>
+                <li><h3 class="texte9" style="color:rgb(0, 0, 0); font-size:large;">Amiodarone: </h3><h3 class="texte9" style="color:rgb(255, 0, 0); font-size:large;">This drug has been described favorably which helps to treat normal fetal problems and it's not most effective so one can use easily</h3></li>
+                <li><h3 class="texte9" style="color:rgb(0, 0, 0); font-size:large;">terbutaline: </h3><h3 class="texte9" style="color:rgb(255, 0, 0); font-size:large;">This drug to stop or slow the contractions which are more high and helps when the patient labour is not right to deliver</h3></li>
+                <li><h3 class="texte9" style="color:rgb(0, 0, 0); font-size:large;">Digoxin: </h3><h3 class="texte9" style="color:rgb(255, 0, 0); font-size:large;">This drug is the most common drug used to treat FT. After digoxin, sotalol seems to be the most promising agent, specifically in atrial flutter and nonhydropic supraventricular tachycardia (SVT)</h3></li>
+                <li><h3 class="texte9" style="color:rgb(0, 0, 0); font-size:large;">Amnioinfusion: </h3><h3 class="texte9" style="color:rgb(255, 0, 0); font-size:large;">The insertion of this drug fluid into the amniotic cavity to alleviate compression of the umbilical cord</h3></li>
+                <li><h3 class="texte9" style="color:rgb(0, 0, 0); font-size:large;">Flecainide: </h3><h3 class="texte9" style="color:rgb(255, 0, 0); font-size:large;">This drug is a very effective drug in the treatment of fetal SVT, although concerns about possible pro-arrhythmic effects have limited its use</h3></li>
+                <li><h3 class="texte9" style="color:rgb(0, 0, 0); font-size:large;">oxytocin:(try not to use this drug) </h3><h3 class="texte9" style="color:rgb(255, 0, 0); font-size:large;">This drug that makes the uterus contract more frequently and more forcefully which leads to immediate deliver</h3></li>
+              </ul>
+              </ul>
+            {% else %}
+            <h2 class="texte2" style="color:rgb(0, 192, 226); font-size: x-large;">Some thing went wrong. PLease check once</h2>
+            {% endif %}
+        
+        </div>
+    </div><br>
+            <div>
+              <button type="button" class="btn btn-light btn-lg" onclick="window.print()">Print</button>
+            </div>
+            <div>
+                <!-- Site footer -->
+<footer class="site-footer">
+  <div class="container2">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <h6>About</h6>
+        <p class="text-justify">This Software Allows Doctors/Persons to analyse the Cardiotocography Data and get Prediction of Fetal Distress. This Software is mainly decide to save time for Doctors like Gynaecologist and this is user friendly one can easily understand and they can check their status of Fetal Distress and it gives the tips and further steps to be taken by the person if any Problem in Fetal.</p>
+      </div>
+      
+      
+
+      <div class="col-xs-6 col-md-3">
+        <h6>Contact Us</h6>
+        <ul class="footer-links">
+          <li><a href="" target="_blank">Facebook</a></li>
+          <li><a href="" target="_blank">Instagram</a></li>
+          <li><a href="" target="_blank">Linkedin</a></li>
+          <li><a href="" target="_blank">Youtube</a></li>
+        </ul>
+      </div>
+        <div class="col-xs-6 col-md-3">
+          <h6>Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="" target="_blank">More Info</a></li>
+          </ul>
+        </div>
+      
+      </div>
+      <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by 
+       <a href="#"></a>.
+          </p>
+        </div>
+        
+    </div><br>
+</footer>
+    
+  </div>
+        </div>
+    </body>
+</html>

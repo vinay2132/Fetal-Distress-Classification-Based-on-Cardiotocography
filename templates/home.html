@@ -1,1 +1,208 @@
-templates
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Fetal Distress Classification</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+        <link rel="stylesheet" href="/static/home.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    </head>
+    <body>
+        <div id=parent>
+            
+            <div>
+                <div class="header1">
+                  <a href="#default" class="logo" style="font-family: 'Trebuchet MS'; font-size:xx-large;">Fetal Distress Classification Using Cardiotocography</a>
+                  <div class="header1-right">
+                    <a href="https://gamecontent391.000webhostapp.com/Quote/stg.pdf" target="_blank" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">More Info</a>
+                  </div>
+                </div>
+                <div class="heading">
+                        <h2 class="texte1">What is Fetal Distress?</h2></br>
+                        <p class="texte10">Fetal distress refers to signs before and during childbirth indicating that the fetus is not well. It typically occurs when the fetus has not been receiving enough oxygen and when the pregnancy lasts too long.
+                        </p></br>
+                        <h2 class="texte3">What is Cardiotocography?</h2></br>
+                        <p class="texte10">Cardiotocography (CTG) is a technical means of recording the fetal heartbeat and the uterine contractions during pregnancy. The machine used to perform the monitoring is called a cardiotocograph, more commonly known as an electronic fetal monitor (EFM).
+                        </p></br>
+                        <h2 class="texte4">What are inputs to be given?</h2></br>
+                        <p class="texte10">The outputs which are coming from Cardiotocography Machine of one Person.Those Outputs should be the inputs for this Software and they should be in integer or decimal format.
+                        </p><br>
+                        <h2 class="texte5">How Does this Work?</h2></br>
+                        <p class="texte10">This is computer-based approach for analyses the results and observations made during the cardiotocography and predicts the possibilities of the fetal distress to be occurred. This Software is designed using adaptive boosting ensemble learning Algorithms and various other machine learning algorithms which predicts the status of Distress
+                        </p><br>
+                        <h2 class="texte6">Different types of Fetal Distress</h2></br>
+                        <dl class="texte10" style="color:blanchedalmond">
+                            <dt>-Normal</dt>
+                            <dt>-Suspecious</dt>
+                            <dt>-Pathological</dt>
+                        </dl><br>
+                        <h2 class="texte6">Different Acronym & Expansion</h2></br>
+                        <dl class="texte10" style="color:blanchedalmond">
+                            <dt>ASTV : Abnormal Short Term Variability</dt>
+                            <dt>MSTV: Mean Value of Short Term Variability</dt>
+                            <dt>ALTV : Abnormal Long Term Variability</dt>
+                            <dt>MLTV: Mean Value of Long Term Variability</dt>
+                        </dl><br>
+                        <p class="texte10">The Form in below which is used to give inputs and get fetal distress as Output
+                        </p><br>
+                </div >
+            </div>
+
+        </br>
+            <div>
+                <div class="container">
+                    <header>
+                        <h1>
+                            <a href="#">
+                                <img src="/static/2.png" alt="Authentic Collection">
+                            </a>
+                        </h1>
+                    </header></br>
+                    <form class="registration-form" action="{{ url_for('predict')}}" method="POST">
+                        <h1 class="text-left">Basic Inputs</h1></br></br>
+                        <label class="col-one-half">
+                            <span class="label-text">BaseLine Value</span><br>
+                            <input type="text" name="baseline_value" required>
+                        </label>
+                        <label class="col-one-half">
+                            <span class="label-text">Accelerations</span><br>
+                            <input type="text" name="accelerations" required>
+                        </label>
+                        <label class="col-one-half">
+                            <span class="label-text">Fetal Movement</span><br>
+                            <input type="text" name="fetal_movement" required>
+                        </label>
+                        <label class="col-one-half">
+                            <span class="label-text">Uterine Contractions</span><br>
+                            <input type="text" name="uterine_contractions" required>
+                        </label></br>
+                        <h1 class="text-left">Decelerations Inputs</h1></br></br>
+                        <label class="col-one-half">
+                            <span class="label-text">Light Decelerations</span><br>
+                            <input type="text" name="light_decelerations" required>
+                        </label>
+                        <label class="col-one-half">
+                            <span class="label-text">Severe_Decelerations</span><br>
+                            <input type="text" name="severe_decelerations" required>
+                        </label>
+                        <label >
+                            <span class="label-text" style="font-family: 'Trebuchet MS'; font-size: 0.8em;">Prolongued Decelerations</span><br>
+                            <input type="text" name="prolongued_decelerations" required>
+                        </label></br>
+                
+                        
+                        <h1 class="text-left">Variability Inputs</h1></br></br>
+                        <label class="col-one-half1">
+                            <span class="label-text">ASTV</span><br>
+                            <input type="text" name="ASTV" required>
+                        </label>
+                        <label class="col-one-half1">
+                            <span class="label-text">MSTV</span><br>
+                            <input type="text" name="MSTV" required>
+                        </label>
+                        <label class="col-one-half1">
+                            <span class="label-text">ALTV</span><br>
+                            <input type="text" name="ALTV" required>
+                        </label>
+                        <label class="col-one-half1">
+                            <span class="label-text">MLTV</span><br>
+                            <input type="text" name="MLTV" required>
+                        </label></br>
+                        <h1 class="text-left">Histogram Inputs</h1></br></br>
+                        <label class="col-one-half1">
+                            <span class="label-text">width</span><br>
+                            <input type="text" name="width" required>
+                        </label>
+                        <label class="col-one-half1">
+                            <span class="label-text">min</span><br>
+                            <input type="text" name="min" required>
+                        </label>
+                        <label class="col-one-half1">
+                            <span class="label-text">max</span><br>
+                            <input type="text" name="max" required>
+                        </label>
+                        <label class="col-one-half1">
+                            <span class="label-text">no:of peaks</span><br>
+                            <input type="text" name="no_of_peaks" required>
+                        </label>
+                        <label class="col-one-half1">
+                            <span class="label-text">no:of zeros</span><br>
+                            <input type="text" name="no_of_zeros" required>
+                        </label>
+                        <label class="col-one-half1">
+                            <span class="label-text">mode</span><br>
+                            <input type="text" name="mode" required>
+                        </label>
+                        <label class="col-one-half1">
+                            <span class="label-text">mean</span><br>
+                            <input type="text" name="mean" required>
+                        </label>
+                        <label class="col-one-half1">
+                            <span class="label-text">median</span><br>
+                            <input type="text" name="median" required>
+                        </label>
+                        <label class="col-one-half1">
+                            <span class="label-text">variance</span><br>
+                            <input type="text" name="variance" required>
+                        </label>
+                        <label class="col-one-half1">
+                            <span class="label-text">tendency</span><br>
+                            <input type="text" name="tendency" required>
+                        </label>
+                
+                
+                
+                        <div class="text-center">
+                            <input type="submit" class="submit" style="font-family: 'Trebuchet MS';">
+                        </div>
+                    </form>
+                </div>
+            </div>  </br></br>
+            <div>
+                      <!-- Site footer -->
+    <footer class="site-footer">
+        <div class="container2">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <h6>About</h6>
+              <p class="text-justify">This Software Allows Doctors/Persons to analyse the Cardiotocography Data and get Prediction of Fetal Distress. This Software is mainly decide to save time for Doctors like Gynaecologist and this is user friendly one can easily understand and they can check their status of Fetal Distress and it gives the tips and further steps to be taken by the person if any Problem in Fetal.</p>
+            </div>
+            
+            
+  
+            <div class="col-xs-6 col-md-3">
+              <h6>Contact Us</h6>
+              <ul class="footer-links">
+                <li><a href="" target="_blank">Facebook</a></li>
+                <li><a href="" target="_blank">Instagram</a></li>
+                <li><a href="" target="_blank">Linkedin</a></li>
+                <li><a href="" target="_blank">Youtube</a></li>
+              </ul>
+            </div>
+              <div class="col-xs-6 col-md-3">
+                <h6>Quick Links</h6>
+                <ul class="footer-links">
+                  <li><a href="" target="_blank">More Info</a></li>
+                </ul>
+              </div>
+            
+            </div>
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by 
+             <a href="#"></a>.
+                </p>
+              </div>
+              
+          </div><br>
+    </footer>
+          
+        </div>
+  
+            </div>
+
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js'></script>
+    </body>
+</html>
